@@ -3,23 +3,28 @@ import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import ProjectContext from "../../constants/Context";
 
-
 export default function RegistrationPage() {
-	const { user, setUser} = useContext(ProjectContext);
-	const [loading, setLoading] = useState(false)
-	let passwordCheck = '';
-	const navigate = useNavigate()
+	const { user, setUser } = useContext(ProjectContext);
+	const [loading, setLoading] = useState(false);
+	let passwordCheck = "";
+	const navigate = useNavigate();
 
 	function signUp(event) {
-		event.preventDefault()
+		event.preventDefault();
+		setLoading(true);
 
+		if (passwordCheck === user.password) {
+			// Register User in DB !!!!
+			setUser({ name: "", email: "", wallet: [] });
+			navigate("/");
+		}
 	}
 
 	return (
 		<StyledPage>
 			<StyledHeader>MyWallet</StyledHeader>
 			<StyledForm>
-			<input
+				<input
 					type="text"
 					placeholder="Nome"
 					value={user.name}
@@ -50,7 +55,7 @@ export default function RegistrationPage() {
 					type="password"
 					placeholder="Confirme a senha"
 					onChange={(e) => {
-						passwordCheck = e.target.value
+						passwordCheck = e.target.value;
 					}}
 					required
 				/>
@@ -59,7 +64,9 @@ export default function RegistrationPage() {
 				</button>
 			</StyledForm>
 			<Link to={"/"}>
-				<StyledParagraph>Já tem uma conta? Entre agora!</StyledParagraph>
+				<StyledParagraph>
+					Já tem uma conta? Entre agora!
+				</StyledParagraph>
 			</Link>
 		</StyledPage>
 	);

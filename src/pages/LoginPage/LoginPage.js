@@ -9,6 +9,7 @@ export default function LoginPage() {
 
 	function login(event) {
 		event.preventDefault();
+		setLoading(true)
 	}
 	return (
 		<StyledPage>
