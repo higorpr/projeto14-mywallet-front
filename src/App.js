@@ -8,24 +8,29 @@ import MainPage from "./pages/MainPage/MainPage";
 import EntryPage from "./pages/EntryPage/EntryPage";
 
 function App() {
-  // const [user, setUser] = useState({ name: "Higor", email: "higorpr@gmail.com", wallet: [{"Salário":8000},{"Mudança":-5000}] });
-  const [user, setUser] = useState({ name: "", email: "", wallet: []});
-  
-  const [operation, setOperation] = useState("in");
+    // const [user, setUser] = useState({ name: "Higor", email: "higorpr@gmail.com", wallet: [{"Salário":8000},{"Mudança":-5000}] });
+    const [user, setUser] = useState({ name: "", wallet: [] });
 
-  return (
-    <ProjectContext.Provider value={{ user, setUser, operation, setOperation }}>
-      <BrowserRouter>
-        <GlobalStyle />
-        <Routes>
-          <Route path="/" element={<LoginPage />} />
-          <Route path="/registration" element={<RegistrationPage />} />
-          <Route path="/main" element={<MainPage />}/>
-          <Route path="/entry" element={<EntryPage />} />
-        </Routes>
-      </BrowserRouter>
-    </ProjectContext.Provider>
-  );
+    const [operation, setOperation] = useState("in");
+
+    return (
+        <ProjectContext.Provider
+            value={{ user, setUser, operation, setOperation }}
+        >
+            <BrowserRouter>
+                <GlobalStyle />
+                <Routes>
+                    <Route path="/" element={<LoginPage />} />
+                    <Route
+                        path="/registration"
+                        element={<RegistrationPage />}
+                    />
+                    <Route path="/main" element={<MainPage />} />
+                    <Route path="/entry" element={<EntryPage />} />
+                </Routes>
+            </BrowserRouter>
+        </ProjectContext.Provider>
+    );
 }
 
 export default App;

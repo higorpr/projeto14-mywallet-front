@@ -1,0 +1,1 @@
+export const signUpUrl = 'http://localhost:5000/sign-up'
