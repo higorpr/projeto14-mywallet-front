@@ -5,32 +5,24 @@ import WalletEntry from "./WalletEntry";
 
 export default function Wallet() {
 	const { user } = useContext(ProjectContext);
-	const exempleWallet = [
-		{ name: "Salário", value: 3000.00, date: "05/11/2022" },
-		{ name: "Almoço mãe", value: -39.90, date: "13/11/2022" },
-		{ name: "Mercado", value: -542.54, date: "15/11/2022" },
-	];
+	// const exempleWallet = [
+	// 	{ name: "Salário", value: 3000.00, date: "05/11/2022" },
+	// 	{ name: "Almoço mãe", value: -39.90, date: "13/11/2022" },
+	// 	{ name: "Mercado", value: -542.54, date: "15/11/2022" },
+	// ];
+
+	// const exempleWallet = []
 
 	let total = 0;
-	exempleWallet.forEach((entry) => (total += entry.value));
-	console.log(total);
+	user.wallet.forEach((entry) => (total += entry.value));
 
 	return (
 		<>
-			{/* {user.wallet.length > 0 ? (
-				<StyledWallet>
-					<StyledP>Há registros de entrada ou saída</StyledP>
-				</StyledWallet>
-			) : (
-				<StyledWallet>
-					<StyledP>Não há registros de entrada ou saída</StyledP>
-				</StyledWallet>
-			)} */}
-			{exempleWallet.length > 0 ? (
+			{user.wallet.length > 0 ? (
 				<StyledWallet>
 					<StyledInnerWallet>
 						<StyledList>
-							{exempleWallet.map((entry, idx) => (
+							{user.wallet.map((entry, idx) => (
 								<WalletEntry key={idx} entry={entry} />
 							))}
 						</StyledList>

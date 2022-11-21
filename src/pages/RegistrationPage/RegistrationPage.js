@@ -15,7 +15,6 @@ export default function RegistrationPage() {
         setLoading(true);
 
         if (passwordCheck === user.password) {
-            // Register User in DB !!!!
             const userObj = {
                 name: user.name,
                 email: user.email,
@@ -59,7 +58,7 @@ export default function RegistrationPage() {
                     required
                 />
                 <input
-                    type="text"
+                    type="password"
                     placeholder="Senha"
                     value={user.password}
                     onChange={(e) => {
@@ -68,7 +67,7 @@ export default function RegistrationPage() {
                     required
                 />
                 <input
-                    type="text"
+                    type="password"
                     placeholder="Confirme a senha"
                     onChange={(e) => {
                         setPasswordCheck(e.target.value);
