@@ -21,7 +21,8 @@ export default function MainPage() {
                     Authorization: `Bearer ${user.token}`,
                 },
             };
-            const userWallet = await axios.get(getWalletUrl, config);
+            const res = await axios.get(getWalletUrl, config);
+            const userWallet = res.data
             setUser({ ...user, wallet: userWallet });
         };
 

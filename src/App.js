@@ -8,11 +8,9 @@ import MainPage from "./pages/MainPage/MainPage";
 import EntryPage from "./pages/EntryPage/EntryPage";
 
 function App() {
-    // const [user, setUser] = useState({ name: "Higor", email: "higorpr@gmail.com", wallet: [{"Salário":8000},{"Mudança":-5000}] });
     const [user, setUser] = useState({ name: "", token:"" , wallet: [] });
 
     const [operation, setOperation] = useState("in");
-
     return (
         <ProjectContext.Provider
             value={{ user, setUser, operation, setOperation }}

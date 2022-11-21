@@ -3,9 +3,10 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { signUpUrl } from "../../constants/urls";
+import { ThreeDots } from "react-loader-spinner";
 
 export default function RegistrationPage() {
-    const [user, setUser] = useState({ name: "", email: "", password: "" });
+    const [localUser, setLocalUser] = useState({ name: "", email: "", password: "" });
     const [loading, setLoading] = useState(false);
     const [passwordCheck, setPasswordCheck] = useState("");
     const navigate = useNavigate();
@@ -14,15 +15,14 @@ export default function RegistrationPage() {
         event.preventDefault();
         setLoading(true);
 
-        if (passwordCheck === user.password) {
+        if (passwordCheck === localUser.password) {
             const userObj = {
-                name: user.name,
-                email: user.email,
-                password: user.password,
+                name: localUser.name,
+                email: localUser.email,
+                password: localUser.password,
             };
             try {
-                const res = await axios.post(signUpUrl, userObj);
-                console.log(res);
+                await axios.post(signUpUrl, userObj);
                 navigate("/");
             } catch (err) {
                 console.log(err);
@@ -42,27 +42,27 @@ export default function RegistrationPage() {
                 <input
                     type="text"
                     placeholder="Nome"
-                    value={user.name}
+                    value={localUser.name}
                     onChange={(e) => {
-                        setUser({ ...user, name: e.target.value });
+                        setLocalUser({ ...localUser, name: e.target.value });
                     }}
                     required
                 />
                 <input
                     type="email"
                     placeholder="Email"
-                    value={user.email}
+                    value={localUser.email}
                     onChange={(e) => {
-                        setUser({ ...user, email: e.target.value });
+                        setLocalUser({ ...localUser, email: e.target.value });
                     }}
                     required
                 />
                 <input
                     type="password"
                     placeholder="Senha"
-                    value={user.password}
+                    value={localUser.password}
                     onChange={(e) => {
-                        setUser({ ...user, password: e.target.value });
+                        setLocalUser({ ...localUser, password: e.target.value });
                     }}
                     required
                 />
@@ -74,9 +74,16 @@ export default function RegistrationPage() {
                     }}
                     required
                 />
-                <button type="submit" disabled={loading} onClick={signUp}>
-                    Cadastrar
-                </button>
+                {loading === false ? (
+                    <button type="submit" disabled={loading} onClick={signUp}>
+                        Cadastrar
+                    </button>
+                ) : (
+                    <button type="submit" disabled={loading} onClick={signUp}>
+                        <ThreeDots color="#FFFFFF" />
+                    </button>
+                    
+                )}
             </StyledForm>
             <Link to={"/"}>
                 <StyledParagraph>
@@ -130,6 +137,9 @@ const StyledForm = styled.form`
         border-radius: 5px;
         font-size: 20px;
         font-weight: 700;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 `;
 

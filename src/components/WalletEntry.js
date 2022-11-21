@@ -2,6 +2,13 @@ import styled from "styled-components";
 
 export default function WalletEntry({ entry }) {
 	let color = entry.value > 0 ? "#03AC00" : "#C70000";
+	
+	const date = new Date(entry.date)
+	const day = date.getUTCDate()
+	const month = date.getMonth() + 1
+	const dateString = `${day}/${month}`
+	const entryValue = parseFloat(entry.value).toFixed(2)
+	const valueString = entryValue.toString().replace('.',',')
 
     function deleteEntry() {
         
@@ -9,12 +16,12 @@ export default function WalletEntry({ entry }) {
 	return (
 		<StyledLi>
 			<StyledLeft>
-				<StyledDate>{entry.date.slice(0, 5)}</StyledDate>
+				<StyledDate>{dateString}</StyledDate>
 				<StyledName>{entry.name}</StyledName>
 			</StyledLeft>
 			<StyledRight>
 				<StyledValue color={color}>
-					{entry.value.toFixed(2)}
+					{valueString}
 				</StyledValue>
                 <DeleteIcon onClick={deleteEntry}>
                     x
@@ -48,6 +55,7 @@ const StyledName = styled.p`
 	font-size: 16px;
 	line-height: 19px;
 	margin-right: 6px;
+	word-break: break-all;
 `;
 
 const StyledRight = styled.div`
