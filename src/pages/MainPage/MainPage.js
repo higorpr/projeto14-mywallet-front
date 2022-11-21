@@ -47,7 +47,7 @@ export default function MainPage() {
                     </IconContext.Provider>
                 </div>
             </StyledTop>
-            <Wallet />
+            <Wallet nReloads={nReloads} setNReloads={setNReloads}/>
             <StyledBottom>
                 <StyledLink to={"/entry"}>
                     <EntryButton

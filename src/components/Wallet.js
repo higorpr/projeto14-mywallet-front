@@ -3,7 +3,7 @@ import styled from "styled-components";
 import ProjectContext from "../constants/Context";
 import WalletEntry from "./WalletEntry";
 
-export default function Wallet() {
+export default function Wallet({ nReloads, setNReloads }) {
     const { user } = useContext(ProjectContext);
 
     let total = 0;
@@ -16,7 +16,13 @@ export default function Wallet() {
                     <StyledInnerWallet>
                         <StyledList>
                             {user.wallet.map((entry, idx) => (
-                                <WalletEntry key={idx} entry={entry} />
+                                <WalletEntry
+                                    key={idx}
+                                    idx={idx}
+                                    entry={entry}
+                                    nReloads={nReloads}
+                                    setNReloads={setNReloads}
+                                />
                             ))}
                         </StyledList>
                         <StyledBottomText
